@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutteriut2024/app/weatherApp.dart';
+import 'package:flutteriut2024/db_helper.dart';
+import 'package:flutteriut2024/root/home/data_base_helper.dart';
+import 'package:flutteriut2024/dto/city.dto.dart';
+import 'package:flutteriut2024/root/home/cityPage.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  DbHelper.initDb();
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const weatherApp();
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: VilleScreen(), // Assurez-vous d'avoir ce widget défini quelque part
+    );
   }
 }
 
