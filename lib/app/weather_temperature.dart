@@ -9,7 +9,7 @@ class WeatherTemperature extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '${temperature.toStringAsFixed(1)} °C',
-      style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold),
     );
   }
 }

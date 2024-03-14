@@ -52,8 +52,9 @@ class WeatherIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       _getIconAsset(),
-      width: 100.0,
-      height: 100.0,
+      width: 200.0,
+      height: 200.0,
+      fit: BoxFit.fill,
     );
   }
 }

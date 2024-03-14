@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteriut2024/app/weather_icon.dart';
 import 'package:flutteriut2024/app/weather_temperature.dart';
@@ -25,7 +26,6 @@ class weatherRootBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Météo", style: TextStyle(color: Colors.black)),
           WeatherIcon(weatherConditionCode: weatherConditionCode),
           WeatherTemperature(temperature: temperature),
         ],
