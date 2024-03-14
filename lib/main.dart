@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutteriut2024/app/weatherApp.dart';
 import 'package:flutteriut2024/db_helper.dart';
-import 'package:flutteriut2024/root/home/data_base_helper.dart';
 import 'package:flutteriut2024/dto/city.dto.dart';
 import 'package:flutteriut2024/root/home/cityPage.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DbHelper.initDb();
 
   runApp(const MyApp());
 }

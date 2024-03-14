@@ -55,24 +55,29 @@ class DbHelper{
     _db!.insert(tableName, w.toJson());
   }
 
-  static Future<List<CityDTO>> findAll() async {
+  Future<List<CityDTO>> city() async {
+    // Get a reference to the database.
+    final db = await _db;
+
+    // Query the table for all the dogs.
     final List<Map<String, Object?>> resultSet = await _db!.query(tableName);
     if (resultSet.isEmpty) {
       return [];
     }
 
-    final List<CityDTO> words = [];
-    for (var map in resultSet) {
-      var prout = CityDTO.fromJson(map);
-      words.add(CityDTO);
-    }
-
-    return words;
+    // Convert the list of each dog's fields into a list of `Dog` objects.
+    return [
+      for (final {
+      'id': id as int,
+      'nom': nom as String,
+      } in resultSet)
+        CityDTO(id: id, nom: nom,),
+    ];
   }
 
   /// Supprimer une ligne de la table par son uid
-  static Future<void> delete(String uid) async {
-    await _db!.delete(tableName, where: 'uid = ?', whereArgs: [uid]);
+  static Future<void> delete(String id) async {
+    await _db!.delete(tableName, where: 'id = ?', whereArgs: [id]);
   }
 
 }
