@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
 import '../dto/city.dto.dart';
 
@@ -12,25 +13,24 @@ class DbHelper{
     print('initDb');
     final String dbPath = await getDatabasesPath();
     final String path = dbPath + _dbName;
-    final Database database = await openDatabase(path,
+    final Database database = await openDatabase(join(await getDatabasesPath(), 'city_db.db'),
         version: _dbVersion, onCreate: _onCreate, onUpgrade: _onUpgrade);
     _db = database;
     var isOpen = _db?.isOpen;
+    DbHelper.insert(CityDTO(id: 1, nom: 'Besancon'));
+    DbHelper.insert(CityDTO(id: 2, nom: 'Thonons-les-Bains'));
     print('db is Open: $isOpen');
   }
 
 
 
 
-  static const String tableName = 'words';
+  static const String tableName = 'villes';
 
   static const String createTable = '''
   CREATE Table if not exists $tableName (
-    uid INTEGER PRIMARY KEY Not Null,
-    author varchar Not null,
-    content varchar Not null,
-    latitude REAL null,
-    longitude REAL null
+    id INTEGER PRIMARY KEY Not Null,
+    nom varchar Not null
   ) ''';
 
 
@@ -40,12 +40,12 @@ class DbHelper{
 
 
 
-  static  _onCreate(Database db, int version) {
-    db.execute(createTable);
+  static _onCreate(Database db, int version) {
+    return db.execute(createTable);
   }
 
   static _onUpgrade(Database db, int oldVersion, int newVersion) {
-    db.execute(dropTable);
+    return db.execute(dropTable);
 
     _onCreate(db, newVersion);
   }
@@ -55,9 +55,9 @@ class DbHelper{
     _db!.insert(tableName, w.toJson());
   }
 
-  Future<List<CityDTO>> city() async {
+  static Future<List<CityDTO>> city() async {
     // Get a reference to the database.
-    final db = await _db;
+    final db = _db;
 
     // Query the table for all the dogs.
     final List<Map<String, Object?>> resultSet = await _db!.query(tableName);
