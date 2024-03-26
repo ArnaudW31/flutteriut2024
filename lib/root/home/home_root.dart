@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutteriut2024/root/home/home_root_body.dart';
 
-class WeatherRoot extends StatelessWidget {
-  const WeatherRoot({super.key});
+class weatherRoot extends StatelessWidget {
+  final double temperature;
+  final String weatherConditionCode;
+
+  const weatherRoot({required this.temperature, required this.weatherConditionCode, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Title")
+        title: const Text("Météo"),
       ),
-      body: WeatherRootBody(),
+      body: weatherRootBody(
+        temperature: temperature,
+        weatherConditionCode: weatherConditionCode,
+      ),
     );
   }
 }
