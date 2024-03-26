@@ -10,12 +10,7 @@ class weatherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title : "Météo",
-        theme: ThemeData(
-          appBarTheme : const AppBarTheme(color: Colors.greenAccent),
-        ),
-        home : const WeatherRoot()
-      title: "Météo",
+        title: "Météo",
       theme: ThemeData(
         appBarTheme: const AppBarTheme(color: Colors.greenAccent),
       ),
