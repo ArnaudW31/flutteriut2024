@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _pages = [
     weatherApp(temperature: 20, weatherConditionCode: "01d"),
+    VilleScreen()
   ];
 
   @override
