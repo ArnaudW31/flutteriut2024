@@ -3,8 +3,10 @@ import '../../db_helper.dart';
 import '../../dto/city.dto.dart';
 
 class AddCityScreen extends StatefulWidget {
+  const AddCityScreen({super.key});
+
   @override
-  _AddCityScreenState createState() => _AddCityScreenState();
+  State<AddCityScreen> createState() => _AddCityScreenState();
 }
 
 class _AddCityScreenState extends State<AddCityScreen> {
@@ -42,12 +44,10 @@ class _AddCityScreenState extends State<AddCityScreen> {
                 final String cityName = _controller.text;
                 if (cityName.isNotEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Ville ajoutée : $cityName')
-                    ),
+                    SnackBar(content: Text('Ville ajoutée : $cityName')),
                   );
-                  DbHelper.insert(CityDTO(id: DbHelper.nbVille, nom: cityName));
-                  Navigator.pop(context);
+                  DbHelper.insert(CityDTO(nom: cityName));
+                  Navigator.pop(context, true);
                 }
               },
               child: Text('Ajouter'),

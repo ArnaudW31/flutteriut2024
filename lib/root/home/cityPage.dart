@@ -38,12 +38,13 @@ class _VilleScreen extends State<VilleScreen>{
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
             // Utiliser Navigator.push pour naviguer vers AddCityScreen
-            Navigator.push(
+            await Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => AddCityScreen()),
             );
+            setState(() {});
           },
         child: Icon(Icons.add),
         backgroundColor: Colors.orange[200],
