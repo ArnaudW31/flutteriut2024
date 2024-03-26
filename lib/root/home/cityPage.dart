@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../db_helper.dart'; // Assurez-vous que le chemin d'accès correspond à votre structure de fichiers
-import '../../dto/city.dto.dart'; // Assurez-vous que le chemin d'accès correspond à votre structure de fichiers
+import '../../db_helper.dart';
+import '../../dto/city.dto.dart';
+import 'AddCityScreen.dart';
 
 class VilleScreen extends StatelessWidget {
 
@@ -9,8 +10,9 @@ class VilleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return FutureBuilder<List<CityDTO>>(
+    // Utilisation de Scaffold pour ajouter un FloatingActionButton
+    return Scaffold(
+      body: FutureBuilder<List<CityDTO>>(
         future: DbHelper.city(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -23,16 +25,26 @@ class VilleScreen extends StatelessWidget {
             itemCount: snapshot.data!.length,
             itemBuilder: (_, int position) {
               final item = snapshot.data![position];
-              //get your item data here ...
               return Card(
                 child: ListTile(
-                  title: Text(
-                      snapshot.data![position].nom),
+                  title: Text(snapshot.data![position].nom),
                 ),
               );
-            }
+            },
           );
         },
-      );
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+            // Utiliser Navigator.push pour naviguer vers AddCityScreen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddCityScreen()),
+            );
+          },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.orange[200],
+      ),
+    );
   }
 }
