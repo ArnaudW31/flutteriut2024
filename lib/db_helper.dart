@@ -6,6 +6,7 @@ import '../dto/city.dto.dart';
 class DbHelper{
   static const String _dbName = 'city.db';
   static const int _dbVersion = 3;
+  static int nbVille = 2;
 
   static Database? _db;
 
@@ -17,8 +18,6 @@ class DbHelper{
         version: _dbVersion, onCreate: _onCreate, onUpgrade: _onUpgrade);
     _db = database;
     var isOpen = _db?.isOpen;
-    DbHelper.insert(CityDTO(id: 1, nom: 'Besancon'));
-    DbHelper.insert(CityDTO(id: 2, nom: 'Thonons-les-Bains'));
     print('db is Open: $isOpen');
   }
 
@@ -51,6 +50,7 @@ class DbHelper{
   }
 
   static void insert(CityDTO w){
+    nbVille++;
     final Map<String, dynamic> wordAsMap = w.toJson();
     _db!.insert(tableName, w.toJson());
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../db_helper.dart';
+import '../../dto/city.dto.dart';
 
 class AddCityScreen extends StatefulWidget {
   @override
@@ -37,14 +39,15 @@ class _AddCityScreenState extends State<AddCityScreen> {
             // Bouton pour soumettre
             ElevatedButton(
               onPressed: () {
-                // Arnaud ajoute ici la méthode d'insert en bdd stp
                 final String cityName = _controller.text;
                 if (cityName.isNotEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Ville ajoutée : $cityName'),
+                      content: Text('Ville ajoutée : $cityName')
                     ),
                   );
+                  DbHelper.insert(CityDTO(id: DbHelper.nbVille, nom: cityName));
+                  Navigator.pop(context);
                 }
               },
               child: Text('Ajouter'),

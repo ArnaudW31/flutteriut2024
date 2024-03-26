@@ -3,10 +3,13 @@ import '../../db_helper.dart';
 import '../../dto/city.dto.dart';
 import 'AddCityScreen.dart';
 
-class VilleScreen extends StatelessWidget {
+class VilleScreen extends StatefulWidget {
 
+  @override
+  _VilleScreen createState() => _VilleScreen();
+}
 
-  VilleScreen({Key? key}) : super(key: key);
+class _VilleScreen extends State<VilleScreen>{
 
   @override
   Widget build(BuildContext context) {
