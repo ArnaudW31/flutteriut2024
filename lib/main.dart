@@ -7,7 +7,7 @@ import 'package:flutteriut2024/root/home/cityPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await DbHelper.initDb();
   runApp(const MyApp());
 }
 
