@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../db_helper.dart'; // Assurez-vous que le chemin d'accès correspond à votre structure de fichiers
-import '../../dto/city.dto.dart'; // Assurez-vous que le chemin d'accès correspond à votre structure de fichiers
+import '../../db_helper.dart';
+import '../../dto/city.dto.dart';
 
 class VilleScreen extends StatelessWidget {
 
