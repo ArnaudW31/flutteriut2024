@@ -17,8 +17,8 @@ class DbHelper{
         version: _dbVersion, onCreate: _onCreate, onUpgrade: _onUpgrade);
     _db = database;
     var isOpen = _db?.isOpen;
-    DbHelper.insert(CityDTO(id: 1, nom: 'Besancon'));
-    DbHelper.insert(CityDTO(id: 2, nom: 'Thonons-les-Bains'));
+    DbHelper.insert(CityDTO(nom: 'Besancon'));
+    DbHelper.insert(CityDTO(nom: 'Thonons-les-Bains'));
     print('db is Open: $isOpen');
   }
 
@@ -29,7 +29,7 @@ class DbHelper{
 
   static const String createTable = '''
   CREATE Table if not exists $tableName (
-    id INTEGER PRIMARY KEY Not Null,
+    id INTEGER PRIMARY KEY AUTOINCREMENT Not Null,
     nom varchar Not null
   ) ''';
 
@@ -68,10 +68,9 @@ class DbHelper{
     // Convert the list of each dog's fields into a list of `Dog` objects.
     return [
       for (final {
-      'id': id as int,
       'nom': nom as String,
       } in resultSet)
-        CityDTO(id: id, nom: nom,),
+        CityDTO(nom: nom,),
     ];
   }
 

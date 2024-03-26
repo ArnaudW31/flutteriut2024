@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'cityPage.dart';
 
 class AddCityScreen extends StatefulWidget {
   @override
@@ -44,6 +45,9 @@ class _AddCityScreenState extends State<AddCityScreen> {
                     SnackBar(
                       content: Text('Ville ajoutée : $cityName'),
                     ),
+                  );
+                  Navigator.pop(
+                    context
                   );
                 }
               },
