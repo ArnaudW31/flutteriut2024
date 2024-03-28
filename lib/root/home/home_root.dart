@@ -1,22 +1,39 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutteriut2024/root/home/home_root_body.dart';
+import 'cityPage.dart';
+import 'package:flutteriut2024/app/weather_icon.dart';
+import 'package:flutteriut2024/app/weather_temperature.dart';
+
 
 class weatherRoot extends StatelessWidget {
   final double temperature;
   final String weatherConditionCode;
 
-  const weatherRoot({required this.temperature, required this.weatherConditionCode, super.key});
+  weatherRoot(
+      {required this.temperature, required this.weatherConditionCode});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Météo"),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.orangeAccent,
+            Colors.white,
+          ],
+        ),
       ),
-      body: weatherRootBody(
-        temperature: temperature,
-        weatherConditionCode: weatherConditionCode,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          WeatherIcon(weatherConditionCode: weatherConditionCode),
+          WeatherTemperature(temperature: temperature),
+        ],
       ),
+      width: double.infinity,
+      height: double.infinity,
     );
   }
 }
