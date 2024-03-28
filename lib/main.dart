@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             // Par défaut, affiche un loader
             final List<Widget> _pages = [
-              weatherApp(temperature: snapshot.data!.temp , weatherConditionCode: "01d"),
+              WeatherApp(temperature: snapshot.data!.temp , weatherConditionCode: "01d"),
               VilleScreen()
             ];
 
