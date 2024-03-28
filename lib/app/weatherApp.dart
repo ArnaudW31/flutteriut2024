@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutteriut2024/db_helper.dart';
 import 'package:flutteriut2024/root/home/home_root.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
 
-
 class WeatherApp extends StatelessWidget {
   final double temperature;
   final String weatherConditionCode;
+  final String ville = "Ville";
 
   const WeatherApp({required this.temperature, required this.weatherConditionCode, Key? key}) : super(key: key);
 
@@ -29,16 +30,30 @@ class WeatherApp extends StatelessWidget {
             child: WaveWidget(
               config: CustomConfig(
                 gradients: [
-                  [Colors.red.shade500, Colors.red.shade500],
-                  [Colors.orangeAccent.shade400, Colors.orangeAccent.shade400],
+                  [Colors.red, Colors.orange],
+                  [Colors.yellow, Colors.orangeAccent],
                 ],
-                durations: [19440, 10800],
-                heightPercentages: [0.30, 0.35], // Augmentez ces valeurs pour augmenter la taille des vagues
+                durations: [10],
+                heightPercentages: [0.2, 0.4],
                 gradientBegin: Alignment.bottomLeft,
                 gradientEnd: Alignment.topRight,
               ),
-              waveAmplitude: 0,
-              size: Size(double.infinity, 180),
+              waveAmplitude: 200,
+              size: Size(double.infinity, 200),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 80),
+              child: Text(
+                ville,
+                style: TextStyle(
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
             ),
           ),
         ],
