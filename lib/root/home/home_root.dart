@@ -20,7 +20,7 @@ class weatherRoot extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.orangeAccent,
+            Colors.orange,
             Colors.white,
           ],
         ),

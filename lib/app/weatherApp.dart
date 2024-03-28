@@ -30,15 +30,15 @@ class WeatherApp extends StatelessWidget {
             child: WaveWidget(
               config: CustomConfig(
                 gradients: [
-                  [Colors.red, Colors.orange],
-                  [Colors.yellow, Colors.orangeAccent],
+                  [Colors.blue, Colors.lightGreenAccent],
+                  [Colors.blueGrey, Colors.lightBlueAccent],
                 ],
-                durations: [10],
+                durations: [10000, 8000],
                 heightPercentages: [0.2, 0.4],
                 gradientBegin: Alignment.bottomLeft,
                 gradientEnd: Alignment.topRight,
               ),
-              waveAmplitude: 200,
+              waveAmplitude: 30,
               size: Size(double.infinity, 200),
             ),
           ),
@@ -51,7 +51,7 @@ class WeatherApp extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 60,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.deepOrange,
                 ),
               ),
             ),
