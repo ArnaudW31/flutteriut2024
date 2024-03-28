@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(
-        title: 'My Flutter App',
         temperature: temperature,
         weatherConditionCode: weatherConditionCode,
       ),
@@ -38,10 +37,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title, required this.temperature, required this.weatherConditionCode})
+  const MyHomePage({Key? key, required this.temperature, required this.weatherConditionCode})
       : super(key: key);
 
-  final String title;
   final double temperature;
   final String weatherConditionCode;
 
@@ -52,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
+  String ville = "Calais";
   late Future<Weather> futureWeather;
 
   @override
@@ -73,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             // Par défaut, affiche un loader
             final List<Widget> _pages = [
-              WeatherApp(temperature: snapshot.data!.temp , weatherConditionCode: "01d"),
+              WeatherApp(temperature: snapshot.data!.temp , weatherConditionCode: "01d", ville:ville),
               VilleScreen()
             ];
 
@@ -106,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<Weather> fetchWeather() async {
     final city = await DbHelper.city();
     final response = await get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?q='+ city[DbHelper.nbVille].nom +'&appid=8b4f5e2e6f178fdbee06ab9f9674904a&units=metric'));
-    print(city[DbHelper.nbVille].nom);
+    ville = city[DbHelper.nbVille].nom;
 
     if (response.statusCode == 200) {
       // si serveur retourne une reponse "200 OK", on parse le JSON

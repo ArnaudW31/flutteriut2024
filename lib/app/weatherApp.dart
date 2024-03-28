@@ -7,9 +7,9 @@ import 'package:wave/config.dart';
 class WeatherApp extends StatelessWidget {
   final double temperature;
   final String weatherConditionCode;
-  final String ville = "Ville";
+  final String ville;
 
-  const WeatherApp({required this.temperature, required this.weatherConditionCode, Key? key}) : super(key: key);
+  const WeatherApp({required this.temperature, required this.weatherConditionCode, required this.ville, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

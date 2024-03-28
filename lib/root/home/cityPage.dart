@@ -35,7 +35,9 @@ class VilleScreen extends StatelessWidget {
                         snapshot.data![position].nom),
                   ),
                 ),
-                onPressed: _onPressed(position),
+                onPressed: (){
+                    _onPressed(position);
+                },
               );
             }
           );
