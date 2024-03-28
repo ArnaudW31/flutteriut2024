@@ -6,7 +6,7 @@ import '../dto/city.dto.dart';
 class DbHelper{
   static const String _dbName = 'city.db';
   static const int _dbVersion = 3;
-  static int nbVille = 2;
+  static int nbVille = 0;
 
   static Database? _db;
 
