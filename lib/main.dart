@@ -104,7 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
   Future<Weather> fetchWeather() async {
-    final response = await get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?q=Dunkerque&appid=8b4f5e2e6f178fdbee06ab9f9674904a&units=metric'));
+    final city = await DbHelper.city();
+    final response = await get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?q='+ city[DbHelper.nbVille].nom +'&appid=8b4f5e2e6f178fdbee06ab9f9674904a&units=metric'));
+    print(city[DbHelper.nbVille].nom);
 
     if (response.statusCode == 200) {
       // si serveur retourne une reponse "200 OK", on parse le JSON
