@@ -52,6 +52,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
+  double temperature = 20.0;
   late Future<Weather> futureWeather;
 
   @override
@@ -84,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: (index) {
                   setState(() {
                     _currentIndex = index;
+                    futureWeather = fetchWeather();
                   });
                 },
                 items: [
