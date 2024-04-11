@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import '../../db_helper.dart';
 import '../../dto/city.dto.dart';
 
-class VilleScreen extends StatelessWidget {
+class VilleScreen extends StatefulWidget {
 
   const VilleScreen({Key? key}) : super(key: key);
+
+  @override
+  _VilleScreen createState() => _VilleScreen();
+}
 
   _onPressed(int posCity){
     DbHelper.nbVille = posCity;
     print(posCity);
   }
+
+class _VilleScreen extends State<VilleScreen>{
 
   @override
   Widget build(BuildContext context) {
