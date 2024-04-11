@@ -32,7 +32,13 @@ class VilleScreen extends StatelessWidget {
                   child : Card(
                     child: ListTile(
                       title: Text(
-                        snapshot.data![position].nom),
+                          snapshot.data![position].nom),
+                      trailing: ElevatedButton(
+                        onPressed: () {
+                          DbHelper.delete(snapshot.data![position].nom);
+                        },
+                        child: Icon(Icons.delete),
+                      ),
                   ),
                 ),
                 onPressed: (){

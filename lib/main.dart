@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              floatingActionButton: FloatingActionButton(
+              floatingActionButton: _currentIndex == 0 ? null : FloatingActionButton(
                 onPressed: () {
                   // Utiliser Navigator.push pour naviguer vers AddCityScreen
                   Navigator.push(
@@ -125,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final city = await DbHelper.city();
     final response = await get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?q='+ city[DbHelper.nbVille].nom +'&appid=8b4f5e2e6f178fdbee06ab9f9674904a&units=metric'));
     ville = city[DbHelper.nbVille].nom;
+    print(ville);
 
     if (response.statusCode == 200) {
       // si serveur retourne une reponse "200 OK", on parse le JSON

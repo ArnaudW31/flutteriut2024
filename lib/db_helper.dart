@@ -75,8 +75,8 @@ class DbHelper{
   }
 
   /// Supprimer une ligne de la table par son uid
-  static Future<void> delete(String id) async {
-    await _db!.delete(tableName, where: 'id = ?', whereArgs: [id]);
+  static Future<void> delete(String name) async {
+    await _db!.delete(tableName, where: 'nom = ?', whereArgs: [name]);
   }
 
 }
