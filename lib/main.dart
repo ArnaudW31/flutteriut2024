@@ -72,6 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
             if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
+            if(!snapshot.hasData){
+              return CircularProgressIndicator();
+            }
 
             // Par défaut, affiche un loader
             final List<Widget> _pages = [
