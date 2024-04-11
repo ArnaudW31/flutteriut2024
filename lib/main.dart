@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: _currentIndex == 0 ? null : FloatingActionButton(
         onPressed: () async {
           // Utiliser Navigator.push pour naviguer vers AddCityScreen
           await Navigator.push(
