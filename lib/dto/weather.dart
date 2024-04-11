@@ -1,5 +1,5 @@
 class Weather {
-  final double temp;
+  final int temp;
 
   Weather({required this.temp});
 

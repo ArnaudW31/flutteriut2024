@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WeatherTemperature extends StatelessWidget {
-  final double temperature;
+  final int temperature;
 
   WeatherTemperature({required this.temperature});
 
