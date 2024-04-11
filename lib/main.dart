@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutteriut2024/app/weatherApp.dart';
 import 'package:flutteriut2024/db_helper.dart';
 import 'package:flutteriut2024/dto/city.dto.dart';
+import 'package:flutteriut2024/root/home/AddCityScreen.dart';
 import 'package:flutteriut2024/root/home/cityPage.dart';
 import 'package:http/http.dart';
 
@@ -102,6 +103,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: 'Villes',
                   ),
                 ],
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  // Utiliser Navigator.push pour naviguer vers AddCityScreen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddCityScreen()),
+                  );
+                },
+                child: Icon(Icons.add),
+                backgroundColor: Colors.orange[200],
               ),
             );
           },
