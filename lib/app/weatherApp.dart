@@ -30,8 +30,8 @@ class WeatherApp extends StatelessWidget {
             child: WaveWidget(
               config: CustomConfig(
                 gradients: [
-                  [Colors.blue, Colors.lightGreenAccent],
-                  [Colors.blueGrey, Colors.lightBlueAccent],
+                  [Colors.orange, Colors.yellowAccent],
+                  [Colors.red, Colors.orangeAccent],
                 ],
                 durations: [10000, 8000],
                 heightPercentages: [0.2, 0.4],
