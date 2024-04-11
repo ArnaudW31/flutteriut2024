@@ -6,7 +6,7 @@ import 'package:flutteriut2024/app/weather_temperature.dart';
 
 
 class weatherRoot extends StatelessWidget {
-  final double temperature;
+  final int temperature;
   final String weatherConditionCode;
 
   weatherRoot(

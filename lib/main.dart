@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double temperature = 20.0;
+    int temperature = 20;
     String weatherConditionCode = '01d';
 
     return MaterialApp(
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(
+        title: 'My Flutter App',
         temperature: temperature,
         weatherConditionCode: weatherConditionCode,
       ),
@@ -37,10 +38,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.temperature, required this.weatherConditionCode})
+  const MyHomePage({Key? key, required this.title, required this.temperature, required this.weatherConditionCode})
       : super(key: key);
 
-  final double temperature;
+  final String title;
+  final int temperature;
   final String weatherConditionCode;
 
   @override
@@ -50,7 +52,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
-  String ville = "Calais";
+  int temperature = 20;
+  String ville = "";
   late Future<Weather> futureWeather;
 
   @override
@@ -72,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             // Par défaut, affiche un loader
             final List<Widget> _pages = [
-              WeatherApp(temperature: snapshot.data!.temp , weatherConditionCode: "01d", ville:ville),
+              WeatherApp(temperature: snapshot.data!.temp , weatherConditionCode: "01d", ville: ville),
               VilleScreen()
             ];
 
@@ -83,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: (index) {
                   setState(() {
                     _currentIndex = index;
+                    futureWeather = fetchWeather();
                   });
                 },
                 items: [

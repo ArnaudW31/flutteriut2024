@@ -1,11 +1,13 @@
+import 'dart:math';
+
 class Weather {
-  final double temp;
+  final int temp;
 
   Weather({required this.temp});
 
   factory Weather.fromJson(Map<String, dynamic> json) {
     return Weather(
-      temp: json['main']['temp'],
+      temp: json['main']['temp'].round(),
     );
   }
 }

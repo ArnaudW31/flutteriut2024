@@ -5,7 +5,7 @@ import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
 
 class WeatherApp extends StatelessWidget {
-  final double temperature;
+  final int temperature;
   final String weatherConditionCode;
   final String ville;
 
