@@ -40,6 +40,7 @@ class DbHelper{
 
 
   static _onCreate(Database db, int version) {
+    db.execute("INSERT INTO villes if not exists (SELECT * FROM villes) VALUES (1,'Calais')");
     return db.execute(createTable);
   }
 
@@ -56,16 +57,13 @@ class DbHelper{
   }
 
   static Future<List<CityDTO>> city() async {
-    // Get a reference to the database.
     final db = _db;
 
-    // Query the table for all the dogs.
     final List<Map<String, Object?>> resultSet = await _db!.query(tableName);
     if (resultSet.isEmpty) {
       return [];
     }
 
-    // Convert the list of each dog's fields into a list of `Dog` objects.
     return [
       for (final {
       'nom': nom as String,

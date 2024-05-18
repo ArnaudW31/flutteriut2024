@@ -15,21 +15,32 @@ class WeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getCityName();
+
     return FutureBuilder<Weather>(
         future: fetchWeather(),
       builder: (context, snapshot) {
+          int temperatureGet = 0;
+          String cityGet;
         if (snapshot.hasError) {
-          return const Center(child: Text("Erreur lors du chargement"));
+          if(snapshot.error?.toString() == 'No city found') {
+            cityGet = "Veuillez ajouter une ville !";
+          }
+          else{
+            cityGet = DbHelper.cityName; 
+          }
         }
-        if (!snapshot.hasData) {
+        else if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
+        }
+        else{
+          temperatureGet = snapshot.data!.temp ?? 0;
+          cityGet = DbHelper.cityName;
         }
         return Stack(
 
           children: [
             weatherRoot(
-              temperature: snapshot.data!.temp,
+              temperature: temperatureGet,
               weatherConditionCode: "01d",
             ),
             Positioned(
@@ -56,7 +67,8 @@ class WeatherScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 80),
                 child: Text(
-                  DbHelper.cityName,
+                  cityGet,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 60,
                     fontWeight: FontWeight.bold,
@@ -71,15 +83,23 @@ class WeatherScreen extends StatelessWidget {
       );
   }
 
-  Future<void> getCityName() async{
+  Future<String> getCityName() async{
     final city = await DbHelper.city();
-    DbHelper.cityName = city[DbHelper.nbVille].nom;
-    print(city[DbHelper.nbVille].nom);
+    if(city.isEmpty){
+      return "pas de ville";
+    }
+    else {
+      return city[DbHelper.nbVille].nom;
+    }
   }
 
 
   Future<Weather> fetchWeather() async {
-
+    String cityGet = await getCityName();
+    if(cityGet == "pas de ville"){
+      throw Exception('No city found');
+    }
+    DbHelper.cityName = cityGet;
     final response = await get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?q='+ DbHelper.cityName +'&appid=8b4f5e2e6f178fdbee06ab9f9674904a&units=metric'));
     if (response.statusCode == 200) {
       // si serveur retourne une reponse "200 OK", on parse le JSON
