@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../db_helper.dart';
 import '../../dto/city.dto.dart';
 
@@ -50,7 +51,9 @@ class _AddCityScreenState extends State<AddCityScreen> {
                   Navigator.pop(context, true);
                 }
               },
-              child: Text('Ajouter'),
+              child: Text('Ajouter',
+                style : GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.deepOrange))
+              )
             ),
           ],
         ),
