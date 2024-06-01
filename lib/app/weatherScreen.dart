@@ -21,6 +21,7 @@ class WeatherScreen extends StatelessWidget {
         future: fetchWeather(),
       builder: (context, snapshot) {
           int temperatureGet = 0;
+          String iconGet = "01d";
           String cityGet;
         if (snapshot.hasError) {
           if(snapshot.error?.toString() == 'No city found') {
@@ -35,6 +36,7 @@ class WeatherScreen extends StatelessWidget {
         }
         else{
           temperatureGet = snapshot.data!.temp ?? 0;
+          iconGet = snapshot.data!.icon  ?? "01d";
           cityGet = DbHelper.cityName;
         }
         return Stack(
@@ -42,7 +44,7 @@ class WeatherScreen extends StatelessWidget {
           children: [
             weatherRoot(
               temperature: temperatureGet,
-              weatherConditionCode: "01d",
+              weatherConditionCode: iconGet,
             ),
             Positioned(
               left: 0,
