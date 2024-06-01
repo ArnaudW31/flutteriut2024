@@ -15,7 +15,7 @@ class WeatherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Obtenir l'heure actuelle
     final now = DateTime.now();
-    final bool isAfternoon = now.hour >= 16;
+    final bool isAfternoon = now.hour >= 16 || now.hour <=7;
 
     // Définir les couleurs en fonction de l'heure
     final backgroundColor = isAfternoon ? Colors.deepPurple : Colors.lightBlue;
