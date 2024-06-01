@@ -9,7 +9,7 @@ class WeatherTemperature extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
-    final bool isAfternoon = now.hour >= 11;
+    final bool isAfternoon = now.hour >= 16;
     final textColor = isAfternoon ? Colors.deepPurple : Colors.lightBlue;
     return Text(
       '${temperature.toStringAsFixed(1)} °C',
