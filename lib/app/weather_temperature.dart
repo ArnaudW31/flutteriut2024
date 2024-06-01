@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WeatherTemperature extends StatelessWidget {
   final int temperature;
@@ -12,7 +13,7 @@ class WeatherTemperature extends StatelessWidget {
     final textColor = isAfternoon ? Colors.deepPurple : Colors.lightBlue;
     return Text(
       '${temperature.toStringAsFixed(1)} °C',
-      style: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: textColor),
+      style: GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: textColor)),
     );
   }
 }

@@ -22,7 +22,7 @@ class weatherRoot extends StatelessWidget {
     final backgroundBottomColor = isAfternoon ? Colors.deepPurple : Colors.white;
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

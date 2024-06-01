@@ -97,8 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
             context,
             MaterialPageRoute(builder: (context) => AddCityScreen()),
           );
-          setState(() {
-          });
+          _currentIndex = 0;
+          setState(() {});
+
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,

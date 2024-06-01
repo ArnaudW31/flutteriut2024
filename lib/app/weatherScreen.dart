@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutteriut2024/db_helper.dart';
 import 'package:flutteriut2024/root/home/home_root.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
@@ -75,11 +76,7 @@ class WeatherScreen extends StatelessWidget {
                 child: Text(
                   cityGet,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold,
-                      color: textColor,
-                    ),
+                    style: GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: textColor)
                   ),
                 ),
               ),

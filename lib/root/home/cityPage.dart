@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../db_helper.dart';
 import '../../dto/city.dto.dart';
 
@@ -12,7 +13,6 @@ class VilleScreen extends StatefulWidget {
 
   _onPressed(int posCity){
     DbHelper.nbVille = posCity;
-    print(posCity);
   }
 
 class _VilleScreen extends State<VilleScreen>{
@@ -38,10 +38,17 @@ class _VilleScreen extends State<VilleScreen>{
                   child : Card(
                     child: ListTile(
                       title: Text(
-                          snapshot.data![position].nom),
+                          snapshot.data![position].nom,
+                        style: GoogleFonts.ubuntu()),
                       trailing: ElevatedButton(
                         onPressed: () {
                           DbHelper.delete(snapshot.data![position].nom);
+                          setState(() {
+
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Ville supprimée !')),
+                          );
                         },
                         child: Icon(Icons.delete),
                       ),
