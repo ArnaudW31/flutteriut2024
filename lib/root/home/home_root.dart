@@ -14,14 +14,21 @@ class weatherRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final bool isAfternoon = now.hour >= 11;
+
+    // Définir les couleurs en fonction de l'heure
+    final backgroundTopColor = isAfternoon ? Colors.black : Colors.blue;
+    final backgroundBottomColor = isAfternoon ? Colors.deepPurple : Colors.white;
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.orange,
-            Colors.white,
+            backgroundTopColor,
+            backgroundBottomColor,
           ],
         ),
       ),

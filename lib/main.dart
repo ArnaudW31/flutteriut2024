@@ -53,9 +53,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   int _currentIndex = 0;
   int temperature = 20;
   String ville = "";
+
   late Future<Weather> futureWeather;
 
   final List<Widget> _pages = [WeatherScreen(), VilleScreen()];
@@ -99,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.orange[200],
+        backgroundColor: Colors.blue,
       ),
     ));
   }

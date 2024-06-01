@@ -1,23 +1,30 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutteriut2024/db_helper.dart';
 import 'package:flutteriut2024/root/home/home_root.dart';
 import 'package:http/http.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
-
 import '../dto/weather.dart';
 
 class WeatherScreen extends StatelessWidget {
-
   const WeatherScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Obtenir l'heure actuelle
+    final now = DateTime.now();
+    final bool isAfternoon = now.hour >= 11;
+
+    // Définir les couleurs en fonction de l'heure
+    final backgroundColor = isAfternoon ? Colors.deepPurple : Colors.lightBlue;
+    final textColor = isAfternoon ? Colors.deepPurple : Colors.lightBlue;
+    final waveColors = isAfternoon
+        ? [[Colors.orange, Colors.orangeAccent], [Colors.orange, Colors.deepOrangeAccent]]
+        : [[Colors.lightBlue, Colors.white], [Colors.lightBlue, Colors.blue]];
 
     return FutureBuilder<Weather>(
-        future: fetchWeather(),
+      future: fetchWeather(),
       builder: (context, snapshot) {
           int temperatureGet = 0;
           String iconGet = "01d";
@@ -27,43 +34,40 @@ class WeatherScreen extends StatelessWidget {
             cityGet = "Veuillez ajouter une ville !";
           }
           else{
-            cityGet = DbHelper.cityName; 
+            cityGet = DbHelper.cityName;
           }
-        }
-        else if (!snapshot.hasData) {
+        } else if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
-        }
-        else{
-          temperatureGet = snapshot.data!.temp ?? 0;
-          iconGet = snapshot.data!.icon  ?? "01d";
+        } else {
+          temperatureGet = snapshot.data!.temp;
+          iconGet = snapshot.data!.icon;
           cityGet = DbHelper.cityName;
         }
-        return Stack(
 
-          children: [
-            weatherRoot(
-              temperature: temperatureGet,
-              weatherConditionCode: iconGet,
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: WaveWidget(
-                config: CustomConfig(
-                  gradients: [
-                    [Colors.orange, Colors.yellowAccent],
-                    [Colors.red, Colors.orangeAccent],
-                  ],
-                  durations: [10000, 8000],
-                  heightPercentages: [0.2, 0.4],
-                  gradientBegin: Alignment.bottomLeft,
-                  gradientEnd: Alignment.topRight,
-                ),
-                waveAmplitude: 30,
-                size: Size(double.infinity, 200),
+        return Container(
+          color: backgroundColor,
+          child: Stack(
+            children: [
+              weatherRoot(
+                temperature: temperatureGet,
+                weatherConditionCode: iconGet,
               ),
-            ),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: WaveWidget(
+                  config: CustomConfig(
+                    gradients: waveColors,
+                    durations: [10000, 8000],
+                    heightPercentages: [0.2, 0.4],
+                    gradientBegin: Alignment.bottomLeft,
+                    gradientEnd: Alignment.topRight,
+                  ),
+                  waveAmplitude: 30,
+                  size: Size(double.infinity, 200),
+                ),
+              ),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -74,15 +78,16 @@ class WeatherScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 60,
                     fontWeight: FontWeight.bold,
-                    color: Colors.deepOrange,
+                      color: textColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
-      }
-      );
+      },
+    );
   }
 
   Future<String> getCityName() async{
@@ -94,7 +99,6 @@ class WeatherScreen extends StatelessWidget {
       return city[DbHelper.nbVille].nom;
     }
   }
-
 
   Future<Weather> fetchWeather() async {
     String cityGet = await getCityName();
