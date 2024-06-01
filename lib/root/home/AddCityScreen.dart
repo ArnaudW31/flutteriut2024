@@ -52,7 +52,7 @@ class _AddCityScreenState extends State<AddCityScreen> {
                 }
               },
               child: Text('Ajouter',
-                style : GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.deepOrange))
+                style : GoogleFonts.ubuntu()
               )
             ),
           ],
